@@ -61,10 +61,13 @@ StereoCalib(Size boardSize, float squareSize, bool displayCorners = false, bool 
     {
         for (k = 0; k < 2; k++)
         {
+            cout << "i:" <<i<<"--k:"<<k<<"\n"<< endl;
             Mat img;
             capture[k].read(img);
-            if (img.empty())
+            if (img.empty()) {
+                cout << "img Îª¿Õ\n" << endl;
                 break;
+            }
             if (imageSize == Size())
                 imageSize = img.size();
             else if (img.size() != imageSize)
@@ -74,6 +77,7 @@ StereoCalib(Size boardSize, float squareSize, bool displayCorners = false, bool 
             }
             bool found = false;
             vector<Point2f>& corners = imagePoints[k][j];
+            cout << "scaleÂß¼­\n" << endl;
             for (int scale = 1; scale <= maxScale; scale++)
             {
                 Mat timg;
@@ -81,20 +85,25 @@ StereoCalib(Size boardSize, float squareSize, bool displayCorners = false, bool 
                     timg = img;
                 else
                     resize(img, timg, Size(), scale, scale, INTER_LINEAR_EXACT);
+                cout << "²éÕÒÂß¼­\n" << endl;
                 found = findChessboardCorners(timg, boardSize, corners,
                     CALIB_CB_ADAPTIVE_THRESH | CALIB_CB_NORMALIZE_IMAGE);
                 if (found)
                 {
+                    cout << "ÕÒµ½\n" << endl;
                     if (scale > 1)
                     {
+                        cout << "scale´óÓÚ1\n" << endl;
                         Mat cornersMat(corners);
                         cornersMat *= 1. / scale;
                     }
                     break;
                 }
             }
+            cout << "displayCornersÂß¼­pre\n" << endl;
             if (displayCorners)
             {               
+                cout << "displayCornersÂß¼­\n" << endl;
                 Mat cimg, cimg1;
                 cvtColor(img, cimg, COLOR_GRAY2BGR);
                 drawChessboardCorners(cimg, boardSize, corners, found);
@@ -107,8 +116,10 @@ StereoCalib(Size boardSize, float squareSize, bool displayCorners = false, bool 
             }
             else
                 putchar('.');
-            if (!found)
+            if (!found) {
+                cout << "ÕÒ²»µ½\n" << endl;
                 break;
+            }
             cornerSubPix(img, corners, Size(11, 11), Size(-1, -1),
                 TermCriteria(TermCriteria::COUNT + TermCriteria::EPS,
                     30, 0.01));
@@ -328,6 +339,7 @@ int main(int argc, char** argv)
     boardSize.width =9;
     boardSize.height =6;
     float squareSize =1.0f; 
+    cout << "StereoCalib\n" << endl;
     StereoCalib(boardSize, squareSize, false, true, showRectified);
     return 0;
 }
