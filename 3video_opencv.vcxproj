@@ -151,6 +151,14 @@
   <ItemGroup>
     <Image Include="C:\Users\wind\Pictures\Saved Pictures\校准棋盘.jpeg" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="0video.txt" />
+    <Text Include="1video.txt" />
+    <Text Include="2video.txt" />
+    <Text Include="caliberation_result_0.txt" />
+    <Text Include="caliberation_result_1.txt" />
+    <Text Include="caliberation_result_2.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

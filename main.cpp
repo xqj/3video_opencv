@@ -11,8 +11,8 @@ using namespace std;
 
 void main()
 {
-	ifstream fin("calibdata.txt"); /* 标定所用图像文件的路径 */
-	ofstream fout("caliberation_result.txt");  /* 保存标定结果的文件 */
+	ifstream fin("0video.txt"); /* 标定所用图像文件的路径 */
+	ofstream fout("caliberation_result_0.txt");  /* 保存标定结果的文件 */
 	//读取每一幅图像，从中提取出角点，然后对角点进行亚像素精确化	
 	cout << "开始提取角点………………";
 	int image_count = 0;  /* 图像数量 */
@@ -21,24 +21,24 @@ void main()
 	vector<Point2f> image_points_buf;  /* 缓存每幅图像上检测到的角点 */
 	vector<vector<Point2f>> image_points_seq; /* 保存检测到的所有角点 */
 	string filename;
-	int count = -1;//用于存储角点个数。	
+	//int count = -1;//用于存储角点个数。	
 	while (getline(fin, filename))
 	{
-		image_count++;
-		// 用于观察检验输出
-		cout << "image_count = " << image_count << endl;
-		/* 输出检验*/
-		cout << "-->count = " << count;
-		Mat imageInput = imread(filename);
-		if (image_count == 1)  //读入第一张图片时获取图像宽高信息
+		if (filename.size() > 0) 
 		{
-			image_size.width = imageInput.cols;
-			image_size.height = imageInput.rows;
-			cout << "image_size.width = " << image_size.width << endl;
-			cout << "image_size.height = " << image_size.height << endl;
-		}
-		cout << "filename.size = " << filename.size() << endl;
-		if (filename.size()> 0) {
+			cout << "filename = " << filename << endl;
+			image_count++;
+			// 用于观察检验输出
+			cout << "image_count = " << image_count << endl;
+			/* 输出检验*/
+			Mat imageInput = imread(filename);
+			if (image_count == 1)  //读入第一张图片时获取图像宽高信息
+			{
+				image_size.width = imageInput.cols;
+				image_size.height = imageInput.rows;
+				cout << "image_size.width = " << image_size.width << endl;
+				cout << "image_size.height = " << image_size.height << endl;
+			}
 			/* 提取角点 */
 			if (0 == findChessboardCorners(imageInput, board_size, image_points_buf))
 			{
@@ -176,35 +176,35 @@ void main()
 	/************************************************************************
 	显示定标结果
 	*************************************************************************/
-	Mat mapx = Mat(image_size, CV_32FC1);
-	Mat mapy = Mat(image_size, CV_32FC1);
-	Mat R = Mat::eye(3, 3, CV_32F);
-	std::cout << "保存矫正图像" << endl;
-	string imageFileName;
-	std::stringstream StrStm;
-	for (int i = 0; i != image_count; i++)
-	{
-		std::cout << "Frame #" << i + 1 << "..." << endl;
-		initUndistortRectifyMap(cameraMatrix, distCoeffs, R, cameraMatrix, image_size, CV_32FC1, mapx, mapy);
-		StrStm.clear();
-		imageFileName.clear();
-		string filePath = "chess";
-		StrStm << i + 1;
-		StrStm >> imageFileName;
-		filePath += imageFileName;
-		filePath += ".bmp";
-		Mat imageSource = imread(filePath);
-		Mat newimage = imageSource.clone();
-		//另一种不需要转换矩阵的方式
-		//undistort(imageSource,newimage,cameraMatrix,distCoeffs);
-		remap(imageSource, newimage, mapx, mapy, INTER_LINEAR);
-		StrStm.clear();
-		filePath.clear();
-		StrStm << i + 1;
-		StrStm >> imageFileName;
-		imageFileName += "_d.jpg";
-		imwrite(imageFileName, newimage);
-	}
-	std::cout << "保存结束" << endl;
+	//Mat mapx = Mat(image_size, CV_32FC1);
+	//Mat mapy = Mat(image_size, CV_32FC1);
+	//Mat R = Mat::eye(3, 3, CV_32F);
+	//std::cout << "保存矫正图像" << endl;
+	//string imageFileName;
+	//std::stringstream StrStm;
+	//for (int i = 0; i != image_count; i++)
+	//{
+	//	std::cout << "Frame #" << i + 1 << "..." << endl;
+	//	initUndistortRectifyMap(cameraMatrix, distCoeffs, R, cameraMatrix, image_size, CV_32FC1, mapx, mapy);
+	//	StrStm.clear();
+	//	imageFileName.clear();
+	//	string filePath = "chess";
+	//	StrStm << i + 1;
+	//	StrStm >> imageFileName;
+	//	filePath += imageFileName;
+	//	filePath += ".bmp";
+	//	Mat imageSource = imread(filePath);
+	//	Mat newimage = imageSource.clone();
+	//	//另一种不需要转换矩阵的方式
+	//	//undistort(imageSource,newimage,cameraMatrix,distCoeffs);
+	//	remap(imageSource, newimage, mapx, mapy, INTER_LINEAR);
+	//	StrStm.clear();
+	//	filePath.clear();
+	//	StrStm << i + 1;
+	//	StrStm >> imageFileName;
+	//	imageFileName += "_d.jpg";
+	//	imwrite(imageFileName, newimage);
+	//}
+	//std::cout << "保存结束" << endl;
 	return;
 }
