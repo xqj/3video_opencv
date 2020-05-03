@@ -142,8 +142,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Program Files\opencv430\opencv\sources\samples\cpp\stereo_calib.cpp" />
     <ClCompile Include="calibrator.cpp" />
+    <ClCompile Include="3calibration.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="video-1.cpp" />
   </ItemGroup>

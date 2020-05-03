@@ -21,7 +21,7 @@
     <ClCompile Include="video-1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Program Files\opencv430\opencv\sources\samples\cpp\stereo_calib.cpp">
+    <ClCompile Include="3calibration.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
