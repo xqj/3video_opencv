@@ -145,6 +145,7 @@
     <ClCompile Include="calibrator.cpp" />
     <ClCompile Include="3calibration.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="stereo_calib.cpp" />
     <ClCompile Include="video-1.cpp" />
   </ItemGroup>
   <ItemGroup>
