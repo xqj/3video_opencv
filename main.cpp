@@ -239,7 +239,7 @@ int main(int argc, char** argv)
     Mat R13 = Mat_<double>::eye(3, 3), T13 = Mat_<double>::zeros(3, 1);
 
     FileStorage fs;
-    namedWindow("Image View", 0);
+    //namedWindow("Image View", 0);
     //设定3个摄像头
     VideoCapture capture[3];
     for (k = 0; k < 3; k++) {
@@ -263,7 +263,7 @@ int main(int argc, char** argv)
             capture[k].read(view);
             if (!view.empty())
             {
-                imshow("video-show", view);
+               // imshow("video-show", view);
                 printf("处理中...\n");
                 vector<Point2f> ptvec;
                 imageSize = view.size();
