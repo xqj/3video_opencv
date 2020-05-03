@@ -142,8 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Program Files\opencv430\opencv\sources\samples\cpp\main.cpp" />
+    <ClCompile Include="..\..\Program Files\opencv430\opencv\sources\samples\cpp\stereo_calib.cpp" />
     <ClCompile Include="calibrator.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="video-1.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,9 @@
     <Text Include="caliberation_result_0.txt" />
     <Text Include="caliberation_result_1.txt" />
     <Text Include="caliberation_result_2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="stereo_calib.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,7 +21,10 @@
     <ClCompile Include="video-1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Program Files\opencv430\opencv\sources\samples\cpp\main.cpp">
+    <ClCompile Include="..\..\Program Files\opencv430\opencv\sources\samples\cpp\stereo_calib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,5 +57,10 @@
     <Text Include="caliberation_result_2.txt">
       <Filter>资源文件</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="stereo_calib.xml">
+      <Filter>资源文件</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
