@@ -148,6 +148,9 @@
   <ItemGroup>
     <ClInclude Include="calibrator.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\wind\Pictures\Saved Pictures\校准棋盘.jpeg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

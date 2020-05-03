@@ -21,7 +21,7 @@ void main()
 	vector<Point2f> image_points_buf;  /* 缓存每幅图像上检测到的角点 */
 	vector<vector<Point2f>> image_points_seq; /* 保存检测到的所有角点 */
 	string filename;
-	int count = -1;//用于存储角点个数。
+	int count = -1;//用于存储角点个数。	
 	while (getline(fin, filename))
 	{
 		image_count++;
@@ -37,25 +37,27 @@ void main()
 			cout << "image_size.width = " << image_size.width << endl;
 			cout << "image_size.height = " << image_size.height << endl;
 		}
-
-		/* 提取角点 */
-		if (0 == findChessboardCorners(imageInput, board_size, image_points_buf))
-		{
-			cout << "can not find chessboard corners!\n"; //找不到角点
-			exit(1);
-		}
-		else
-		{
-			Mat view_gray;
-			cvtColor(imageInput, view_gray, CV_RGB2GRAY);
-			/* 亚像素精确化 */
-			find4QuadCornerSubpix(view_gray, image_points_buf, Size(5, 5)); //对粗提取的角点进行精确化
-			//cornerSubPix(view_gray,image_points_buf,Size(5,5),Size(-1,-1),TermCriteria(CV_TERMCRIT_EPS+CV_TERMCRIT_ITER,30,0.1));
-			image_points_seq.push_back(image_points_buf);  //保存亚像素角点
-			/* 在图像上显示角点位置 */
-			drawChessboardCorners(view_gray, board_size, image_points_buf, false); //用于在图片中标记角点
-			imshow("Camera Calibration", view_gray);//显示图片
-			waitKey(500);//暂停0.5S		
+		cout << "filename.size = " << filename.size() << endl;
+		if (filename.size()> 0) {
+			/* 提取角点 */
+			if (0 == findChessboardCorners(imageInput, board_size, image_points_buf))
+			{
+				cout << "can not find chessboard corners!\n"; //找不到角点
+				exit(1);
+			}
+			else
+			{
+				Mat view_gray;
+				cvtColor(imageInput, view_gray, CV_RGB2GRAY);
+				/* 亚像素精确化 */
+				find4QuadCornerSubpix(view_gray, image_points_buf, Size(5, 5)); //对粗提取的角点进行精确化
+				//cornerSubPix(view_gray,image_points_buf,Size(5,5),Size(-1,-1),TermCriteria(CV_TERMCRIT_EPS+CV_TERMCRIT_ITER,30,0.1));
+				image_points_seq.push_back(image_points_buf);  //保存亚像素角点
+				/* 在图像上显示角点位置 */
+				drawChessboardCorners(view_gray, board_size, image_points_buf, false); //用于在图片中标记角点
+				imshow("Camera Calibration", view_gray);//显示图片
+				waitKey(500);//暂停0.5S		
+			}
 		}
 	}
 	int total = image_points_seq.size();
