@@ -15,10 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="calibrator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="calibrator.cpp">
+    <ClCompile Include="video-1.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Program Files\opencv430\opencv\sources\samples\cpp\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

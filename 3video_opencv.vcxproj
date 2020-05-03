@@ -142,8 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Program Files\opencv430\opencv\sources\samples\cpp\main.cpp" />
     <ClCompile Include="calibrator.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="video-1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="calibrator.h" />
